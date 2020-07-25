@@ -10,6 +10,7 @@ export class App extends Component {
   render() {
     return (
       <div>
+        Dit is een test
       </div>
     );
   }
