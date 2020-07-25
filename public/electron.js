@@ -5,8 +5,7 @@ let window = null;
 
 function createWindow() {
   window = new BrowserWindow({width: 950, height: 713, webPreferences: {nodeIntegration: true}});
-  window.loadURL(`file://${path.join(__dirname, "../public/index.html")}`
-  );
+  window.loadURL(`file://${path.join(__dirname, "/index.html")}`);
 }
 
 function openMainWindow() {
