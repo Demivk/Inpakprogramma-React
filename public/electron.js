@@ -4,7 +4,7 @@ const path = require("path");
 let window = null;
 
 function createWindow() {
-  window = new BrowserWindow({width: 1600, height: 680, webPreferences: {nodeIntegration: true}});
+  window = new BrowserWindow({width: 950, height: 713, webPreferences: {nodeIntegration: true}});
   window.loadURL(`file://${path.join(__dirname, "../public/index.html")}`
   );
 }

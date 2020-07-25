@@ -28,8 +28,7 @@
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
-    "electron": "electron .",
-    "start": "yarn react-start && electron"
+    "electron": "electron ."
   },
   "eslintConfig": {
     "extends": "react-app"

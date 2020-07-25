@@ -47,6 +47,34 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="C:\Users\demiv\Documents\Mijn documenten\Coding\inpakprogramma-react\node_modules\typescript\lib" />
   </component>
+  <component name="RunManager" selected="npm.electron">
+    <configuration name="electron" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="electron" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.electron" />
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -69,5 +97,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595703002123" />
+    <state width="1899" height="261" key="GridCell.Tab.0.bottom" timestamp="1595703605195">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595703605195" />
+    <state width="1899" height="261" key="GridCell.Tab.0.center" timestamp="1595703605195">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="261" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595703605195" />
+    <state width="1899" height="261" key="GridCell.Tab.0.left" timestamp="1595703605195">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="261" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595703605195" />
+    <state width="1899" height="261" key="GridCell.Tab.0.right" timestamp="1595703605195">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="261" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595703605195" />
   </component>
 </project>
