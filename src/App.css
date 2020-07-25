@@ -1,0 +1,29 @@
+.grid {
+    display: grid;
+    column-gap: 5px;
+    row-gap: 5px;
+}
+
+.container {
+    margin: 25px;
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.top-container {
+    grid-template-rows: repeat(9, 1fr);
+    margin-bottom: 25px;
+}
+
+.top-input-container {
+    grid-template-columns: 1fr 2fr;
+}
+
+.bottom-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    margin-bottom: 25px;
+}
+
+.bottom-input-container {
+    grid-template-columns: 1fr 2fr;
+}
