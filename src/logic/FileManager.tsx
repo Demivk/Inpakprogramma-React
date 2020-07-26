@@ -1,9 +1,9 @@
 import {ILabelData} from "./dto/ILabelData";
 
 const remote = window.require('electron').remote;
-const path = remote.app.getPath('userData');
+const path = remote.app.getPath('userData') + "/LabelData";
 const fs = window.require('fs');
-const dataPath: string = path + "/data.json";
+const dataPath: string = path + "/label-data.json";
 
 export class FileManager {
   labels: ILabelData[] = [];
@@ -15,7 +15,7 @@ export class FileManager {
   async saveLabel(labelToSave: ILabelData): Promise<void> {
     let newLabels: ILabelData[] = [];
     this.labels.forEach((lbl: ILabelData) => {
-      if (lbl.id !== labelToSave.id) {
+      if (lbl.refNr !== labelToSave.refNr) {
         newLabels.push(lbl);
       }
     });
@@ -27,7 +27,7 @@ export class FileManager {
   async removeLabel(labelToRemove: ILabelData): Promise<void> {
     let newLabel: ILabelData[] = [];
     this.labels.forEach((lbl: ILabelData) => {
-      if (lbl.id !== labelToRemove.id) {
+      if (lbl.refNr !== labelToRemove.refNr) {
         newLabel.push(lbl);
       }
     });
@@ -67,10 +67,10 @@ export class FileManager {
     }
   }
 
-  getLabel(id: number): ILabelData {
+  getLabel(refNr: number): ILabelData {
     let foundLabel: ILabelData = {} as ILabelData;
     this.labels.forEach((lbl: ILabelData) => {
-      if (lbl.id === id) {
+      if (lbl.refNr === refNr) {
         foundLabel = lbl;
       }
     });

@@ -7,10 +7,33 @@ export class App extends Component {
   fileManager: FileManager = new FileManager();
   labels: ILabelData[] = this.fileManager.getLabels();
 
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      refNr: 0,
+      inpakker: '',
+      naam: '',
+      plaats: '',
+      ref: '',
+      totaalM2: 0,
+      product: '',
+      soort: '',
+      soortDiversen: '',
+      vasteBreedte: false,
+      breedte: 0,
+      vellingkant: false,
+      getrommeld: false,
+      olie: '',
+      geborsteld: false,
+      lak: false,
+      gerookt: 0
+    };
+  }
+
   render() {
     return (
       <div className="grid container">
-        <div>
+        <div className="grid left-container">
           <div className="grid top-container">
             <div className="grid top-input-container">
               <label htmlFor="inpakker">Inpakker</label>
@@ -18,7 +41,7 @@ export class App extends Component {
             </div>
             <div className="grid top-input-container">
               <label htmlFor="refNr">Referentienummer</label>
-              <input type="text" id="refNr" name="Referentienummer"/>
+              <input type="number" step="1" min="0" id="refNr" name="Referentienummer"/>
             </div>
             <div className="grid top-input-container">
               <label htmlFor="naam">Naam</label>
@@ -97,16 +120,25 @@ export class App extends Component {
             </div>
           </div>
 
-          <select multiple={true}>
-            <option value=""></option>
-          </select>
-          <button>Verwijder</button>
+          <div className="grid history-container">
+            <select multiple={true}>
+              { this.labels.map(label => <option value={label.refNr}>{label.refNr}</option>) }
+            </select>
+            <button>Verwijder</button>
+            <button type="button">Bon ophalen</button>
+          </div>
         </div>
 
-        <div>
-          <p><strong>Table component</strong></p>
-          <p><strong>That one component with no name</strong></p>
-          <p><strong>Button component</strong></p>
+        <div className="grid right-container">
+          <div className="grid table-container">
+            <p><strong>Table component</strong></p>
+          </div>
+          <div className="grid label-container">
+            <p><strong>Label component</strong></p>
+          </div>
+          <div className="grid button-container">
+            <p><strong>Button component</strong></p>
+          </div>
         </div>
       </div>
     );
