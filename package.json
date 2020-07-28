@@ -6,6 +6,9 @@
     "name": "Demi van Kesteren",
     "email": "demi.van.kesteren@gmail.com"
   },
+  "build": {
+    "appId": "Inpakprogramma-Van-Kesteren"
+  },
   "main": "public/electron.js",
   "homepage": "./",
   "private": true,
@@ -19,7 +22,6 @@
     "@types/react-dom": "^16.9.0",
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
-    "electron": "^9.1.1",
     "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -32,6 +34,9 @@
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "build": "npm run react-build && npm run electron-build",
+    "release": "npm run react-build && electron-builder --publish=always",
     "electron": "electron .",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
@@ -51,6 +56,7 @@
     ]
   },
   "devDependencies": {
-    "electron-builder": "^22.7.0"
+    "electron-builder": "^22.8.0",
+    "electron": "^9.1.1"
   }
 }

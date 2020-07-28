@@ -12,6 +12,8 @@
 /build
 /.idea
 
+/dist
+
 # lock
 package-lock.json
 
