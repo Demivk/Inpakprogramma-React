@@ -4,27 +4,8 @@ import {ILabelData} from "../logic/dto/ILabelData";
 
 interface IProps {
     fileManager: FileManager;
+    onChange: any;
 }
-
-// interface IState {
-//     refNr: number;
-//     inpakker: string;
-//     naam: string;
-//     plaats: string;
-//     ref: string;
-//     totaalM2: number;
-//     product: string;
-//     soort: string;
-//     soortDiversen: string;
-//     vasteBreedte: boolean;
-//     breedte: number;
-//     vellingkant: boolean;
-//     getrommeld: boolean;
-//     olie: string;
-//     geborsteld: boolean;
-//     lak: boolean;
-//     gerookt: number;
-// }
 
 export class FormContainer extends React.Component<IProps, any> {
     private readonly _fileManager: FileManager = this.props.fileManager;
@@ -69,8 +50,32 @@ export class FormContainer extends React.Component<IProps, any> {
     }
 
     submitLabel = async () => {
-        await this._fileManager.saveLabel(this.state as ILabelData);
-        // Reload other components
+        await this._fileManager.saveLabel(this.state as ILabelData).then(() => {
+            this.props.onChange("success");
+            this.resetForm();
+        });
+    }
+
+    resetForm() {
+        this.setState({
+            refNr: 0,
+            inpakker: '',
+            naam: '',
+            plaats: '',
+            ref: '',
+            totaalM2: 0,
+            product: 'none',
+            soort: 'none',
+            soortDiversen: 'none',
+            vasteBreedte: false,
+            breedte: 0,
+            vellingkant: false,
+            getrommeld: false,
+            olie: 'none',
+            geborsteld: false,
+            lak: false,
+            gerookt: 0
+        });
     }
 
     // value setten op this.state.[prop]? -> YES WANT VOOR UPDATEN IS HET WSS STATE = LABEL TO UPDATE (GETLABELBYREF)
@@ -163,6 +168,7 @@ export class FormContainer extends React.Component<IProps, any> {
                         </select>
                     </div>
                 </div>
+
                 <button type="submit" onClick={this.submitLabel}>Opslaan</button>
             </div>
         );
