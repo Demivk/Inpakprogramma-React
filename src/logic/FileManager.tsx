@@ -12,43 +12,51 @@ export class FileManager {
     this.loadLabels();
   }
 
+  getLabels(): ILabelData[] {
+    return this.labels;
+  }
+
+  getLabel(refNr: number): ILabelData | undefined {
+    return this.labels.find(l => l.refNr === refNr);
+  }
+
   async saveLabel(labelToSave: ILabelData): Promise<void> {
     let newLabels: ILabelData[] = [];
-    this.labels.forEach((lbl: ILabelData) => {
-      if (lbl.refNr !== labelToSave.refNr) {
-        newLabels.push(lbl);
+    this.labels.forEach((label: ILabelData) => {
+      if (label.refNr !== labelToSave.refNr && labelToSave.refNr !== 0) {
+        newLabels.push(label);
       }
     });
+
     newLabels.push(labelToSave);
+
     await this.writeLabelsToFile(newLabels);
     this.labels = newLabels;
   }
 
-  async removeLabel(labelToRemove: ILabelData): Promise<void> {
-    let newLabel: ILabelData[] = [];
-    this.labels.forEach((lbl: ILabelData) => {
-      if (lbl.refNr !== labelToRemove.refNr) {
-        newLabel.push(lbl);
+  async removeLabel(refNrToRemove: number) {
+    let newLabels: ILabelData[] = [];
+    this.labels.forEach((label: ILabelData) => {
+      if (label.refNr !== refNrToRemove) {
+        newLabels.push(label);
       }
     });
-    await this.writeLabelsToFile(newLabel);
-    this.labels = newLabel;
+    await this.writeLabelsToFile(newLabels);
+    this.labels = newLabels;
   }
 
-  private writeLabelsToFile(labelsToSave: ILabelData[]): Promise<void> {
-    return new Promise(((resolve, reject) => {
-      if (!fs.existsSync(dataPath)) {
-        return reject('Save is called before load.');
-      }
+  private writeLabelsToFile(labelsToSave: ILabelData[]) {
+    if (!fs.existsSync(dataPath)) {
+      return Promise.reject('Save is called before load.');
+    }
 
-      fs.writeFile(dataPath, JSON.stringify({labels: labelsToSave}), (err: any) => {
-        if (err) return reject(err);
-        return resolve();
-      });
-    }));
+    fs.writeFile(dataPath, JSON.stringify({labels: labelsToSave}), (err: any) => {
+      if (err) return Promise.reject(err);
+      return Promise.resolve();
+    });
   }
 
-  private loadLabels(): void {
+  private loadLabels() {
     if (fs.existsSync(dataPath)) {
       try {
         this.labels = JSON.parse(fs.readFileSync(dataPath, 'utf8')).labels;
@@ -65,19 +73,5 @@ export class FileManager {
         if (err) console.log(err);
       });
     }
-  }
-
-  getLabel(refNr: number): ILabelData {
-    let foundLabel: ILabelData = {} as ILabelData;
-    this.labels.forEach((lbl: ILabelData) => {
-      if (lbl.refNr === refNr) {
-        foundLabel = lbl;
-      }
-    });
-    return foundLabel;
-  }
-
-  getLabels(): ILabelData[] {
-    return this.labels;
   }
 }

@@ -4,7 +4,7 @@ const isDev = require("electron-is-dev");
 let window = null;
 
 function createWindow() {
-  window = new BrowserWindow({width: 950, height: 713, webPreferences: {nodeIntegration: true}});
+  window = new BrowserWindow({width: 1024, height: 768, webPreferences: {nodeIntegration: true}});
   window.loadURL(
       isDev
           ? "http://localhost:3000"
