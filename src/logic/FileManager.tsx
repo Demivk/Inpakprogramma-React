@@ -21,17 +21,19 @@ export class FileManager {
   }
 
   async saveLabel(labelToSave: ILabelData): Promise<void> {
-    let newLabels: ILabelData[] = [];
-    this.labels.forEach((label: ILabelData) => {
-      if (label.refNr !== labelToSave.refNr && labelToSave.refNr !== 0) {
-        newLabels.push(label);
-      }
-    });
+    if (labelToSave.refNr !== 0) {
+      let newLabels: ILabelData[] = [];
+      this.labels.forEach((label: ILabelData) => {
+        if (label.refNr !== labelToSave.refNr) {
+          newLabels.push(label);
+        }
+      });
 
-    newLabels.push(labelToSave);
+      newLabels.push(labelToSave);
 
-    await this.writeLabelsToFile(newLabels);
-    this.labels = newLabels;
+      await this.writeLabelsToFile(newLabels);
+      this.labels = newLabels;
+    }
   }
 
   async removeLabel(refNrToRemove: number) {
@@ -45,9 +47,25 @@ export class FileManager {
     this.labels = newLabels;
   }
 
+  isJsonValid(str: any) {
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  }
+
   private writeLabelsToFile(labelsToSave: ILabelData[]) {
+    const dataToStringify = JSON.stringify({labels: labelsToSave});
+
     if (!fs.existsSync(dataPath)) {
       return Promise.reject('Save is called before load.');
+    }
+
+    if (!this.isJsonValid(dataToStringify)) {
+      console.log('INVALIDDDD'); // remove later
+      return Promise.reject('Invalid JSON.');
     }
 
     fs.writeFile(dataPath, JSON.stringify({labels: labelsToSave}), (err: any) => {
